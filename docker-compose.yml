@@ -1,15 +1,15 @@
-version: '3.8'
+version: "3.8"
 services:
   backend:
-    build: ./obi-back
-    container_name: obi-back-c
+    build: ./obi-back             # path to Dockerfile
+    container_name: obi-back-c    # name of docker container
     ports:
-      - "5000:3000"
+      - "5000:3000"               # mapped ports: "local:docker"
     volumes:
-      - ./obi-back:/app
-      - /app/node_modules
+      - ./obi-back:/app           # mapped files: "local:docker"
+      - /app/node_modules         # mapped (locked) files: "docker"
     environment:
-      - PORT=3000
+      - PORT=3000                 # env variable "name=value"
   frontend:
     build: ./obi-front
     container_name: obi-front-c
