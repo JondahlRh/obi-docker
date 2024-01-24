@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  backend:
+    build: ./obi-back
+    container_name: obi-back-c
+    ports:
+      - "5000:3000"
+    volumes:
+      - ./obi-back:/app
+      - /app/node_modules
+    environment:
+      - PORT=3000
+  frontend:
+    build: ./obi-front
+    container_name: obi-front-c
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./obi-front:/app
+      - /app/node_modules
+    stdin_open: true
+    tty: true
+    environment:
+      - VITE_PORT=3000
+      - VITE_SERVER_URL=http://localhost:5000
